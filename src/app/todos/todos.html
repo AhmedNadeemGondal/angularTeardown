@@ -3,8 +3,14 @@
     <p>Loading...</p>
 }
 @else {
+
+<form >
+    <label >Filter Todos</label>
+<input name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search todos ...">
+</form>
+
 <ul>
-@for (item of todoItems(); track item.id) {
+@for (item of todoItems() | filterTodos: searchTerm(); track item.id) {
 <app-todo-item (todoToggled)="updateTodoItem($event)" [todo] = "item" />
 }
 </ul>}
